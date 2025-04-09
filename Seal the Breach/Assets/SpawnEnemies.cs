@@ -17,8 +17,9 @@ public class SpawnEnemies : MonoBehaviour
         timer += Time.deltaTime;
         if(timer>=waitTime)
         {
-            Instantiate(enemy,transform);
-            Debug.Log(transform.position);
+            Instantiate(enemy,transform.position,transform.rotation);
+            
+            //Debug.Log(transform.position);
             timer=0.0f;
         }
     }

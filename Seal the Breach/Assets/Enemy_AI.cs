@@ -5,6 +5,7 @@ public class Enemy_AI : MonoBehaviour
 {
     NavMeshAgent agent;
     public Transform target;
+    public GameObject bloodParticles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,5 +27,14 @@ public class Enemy_AI : MonoBehaviour
             agent.SetDestination(target.position);
         }
 
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetComponent<Projectile>()!=null)
+        {
+            Instantiate(bloodParticles,transform);
+            Debug.Log("died");
+            Destroy(gameObject,0.5f);
+        }
     }
 }

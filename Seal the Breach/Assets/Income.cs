@@ -25,12 +25,12 @@ public class Income : MonoBehaviour
         timer += Time.deltaTime;
         if(timer>=waitTime)
         {
-            Debug.Log("Time up");
+            //Debug.Log("Time up");
             switch(building)
             {
                 case buildingType.House:
                     scoreboard.GetComponent<TrackResources>().GainGold();
-                    Debug.Log("Gold Up");
+                    //Debug.Log("Gold Up");
                     break;
             }
             timer=0.0f;
