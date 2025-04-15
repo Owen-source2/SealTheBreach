@@ -7,11 +7,18 @@ public class Control : MonoBehaviour
     Vector3 pos = new Vector3(200, 200, 0);
     Vector2 camMove;
     CharacterController control;
-    [SerializeField]GameObject house;
+    [SerializeField]GameObject placedObject;
     [SerializeField]float scrollSpeed;
-    [SerializeField]GameObject scoreboard;
+    [SerializeField]GameObject ui;
+    GameObject built;
+    LayerMask blockPlacement;
+    LayerMask blockPlacementRay;
+    public string selected;
     void Start()
     {
+        blockPlacement = LayerMask.GetMask("IgnoreRaycast","Default");
+        blockPlacementRay = LayerMask.GetMask("TransparentFX");
+        built=placedObject;
         cam = GetComponent<Camera>();
         control=GetComponent<CharacterController>();
     }
@@ -29,12 +36,26 @@ public class Control : MonoBehaviour
     {
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        if(Physics.Raycast(ray, out hit,999f,blockPlacementRay))
         {
+            //check if house would touch anything 
+            Collider[] hitColliders = Physics.OverlapBox(hit.point, built.GetComponent<BoxCollider>().size, built.transform.rotation,blockPlacement);
             //place house
-            Instantiate(house,hit.point,Quaternion.identity);
-            Debug.Log(hit.point);
+            if(hitColliders==null||hitColliders.Length==0)
+            {
+                built=Instantiate(placedObject,hit.point + new Vector3(0.0f,hit.point.y+1f,0.0f),Quaternion.identity);
+            }
+            else
+            {
+                if(true)
+                {
+                    Debug.Log(hitColliders[0]);
+                }
+                Debug.Log("can't place");
+            }
+            
         }
+        //Debug.Log(hit);
         
     }
     void OnZoom(InputValue zoom)
@@ -50,5 +71,18 @@ public class Control : MonoBehaviour
             Debug.Log("zooming in");
         }
         
+    }
+    public void SwitchBuilding(string nowBuilding)
+    {
+        selected=nowBuilding;
+        if(nowBuilding=="House")
+        {
+            placedObject=Resources.Load<GameObject>("House");
+            Debug.Log(placedObject);
+        }
+        else if(nowBuilding=="Soldier")
+        {
+            placedObject=Resources.Load<GameObject>("Archer");
+        }
     }
 }

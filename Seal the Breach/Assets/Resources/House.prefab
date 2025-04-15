@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58d15a0791d36604ea8cbfd6b4df0454, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58d15a0791d36604ea8cbfd6b4df0454, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50,11 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8391222552659086748, guid: 58d15a0791d36604ea8cbfd6b4df0454, type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -516098083770646512, guid: 58d15a0791d36604ea8cbfd6b4df0454, type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 58d15a0791d36604ea8cbfd6b4df0454, type: 3}
       propertyPath: m_Name
@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 58d15a0791d36604ea8cbfd6b4df0454, type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -116,4 +116,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTime: 10
-  scoreboard: {fileID: 5194258258716697463, guid: 4b9cf6fdcc179a84c933d529d851a352, type: 3}
+  scoreboard: {fileID: 0}
