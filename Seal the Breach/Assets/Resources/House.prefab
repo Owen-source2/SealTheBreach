@@ -115,5 +115,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe0a0a5eddeb874191bc9efd91628e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 10
+  waitTime: 1
   scoreboard: {fileID: 0}

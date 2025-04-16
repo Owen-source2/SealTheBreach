@@ -29,7 +29,7 @@ public class Income : MonoBehaviour
             switch(building)
             {
                 case buildingType.House:
-                    scoreboard.GetComponent<TrackResources>().GainGold();
+                    scoreboard.GetComponent<TrackResources>().GainGold(1);
                     //Debug.Log("Gold Up");
                     break;
             }

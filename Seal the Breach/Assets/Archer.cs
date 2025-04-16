@@ -22,10 +22,10 @@ public class Archer : MonoBehaviour
     void Update()
     {
         //float waitTime=waitTimeInit*10/(scoreboard.GetComponent<TrackResources>().gold+1);
-        RaycastHit[] hits=Physics.SphereCastAll(transform.position,range,Vector3.zero,Mathf.Infinity,enemies);
+        RaycastHit[] hits=Physics.SphereCastAll(transform.position,range,Vector3.one,Mathf.Infinity,enemies);
         foreach(var hit in hits)
         {
-            //nearestEnemy=hit.transform.gameObject;
+            nearestEnemy=hit.transform.gameObject;
         }
         
         //Debug.Log(nearestEnemy.transform.position);
@@ -36,7 +36,6 @@ public class Archer : MonoBehaviour
             GameObject firedProjectile = Instantiate(arrow,transform.position,transform.rotation);
             var Projectile=firedProjectile.GetComponent<Projectile>();
             Projectile.target=nearestEnemy;
-            Debug.Log(waitTimeInit);
             timer=0.0f;
         }
         if(nearestEnemy==null)
@@ -44,5 +43,12 @@ public class Archer : MonoBehaviour
             //nearestEnemy=gameObject;
         }
         //transform.rotation = Quaternion.LookRotation(Vector3.down, Vector3.right);
+    }
+    void OnDrawGizmos()
+    {
+        //if(Physics.SphereCastAll(transform.position,range,Vector3.zero,Mathf.Infinity,enemies))
+        //{
+            //Gizmos.DrawWireSphere(transform.position,range);
+        //}
     }
 }

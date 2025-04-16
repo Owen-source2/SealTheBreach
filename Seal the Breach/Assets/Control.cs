@@ -10,10 +10,13 @@ public class Control : MonoBehaviour
     [SerializeField]GameObject placedObject;
     [SerializeField]float scrollSpeed;
     [SerializeField]GameObject ui;
+    [SerializeField]GameObject placementError;
     GameObject built;
     LayerMask blockPlacement;
     LayerMask blockPlacementRay;
+
     public string selected;
+    bool placingSoldier=false;
     void Start()
     {
         blockPlacement = LayerMask.GetMask("IgnoreRaycast","Default");
@@ -36,14 +39,14 @@ public class Control : MonoBehaviour
     {
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit,999f,blockPlacementRay))
+        if(Physics.Raycast(ray, out hit,999f,blockPlacementRay)&&!placingSoldier)
         {
             //check if house would touch anything 
             Collider[] hitColliders = Physics.OverlapBox(hit.point, built.GetComponent<BoxCollider>().size, built.transform.rotation,blockPlacement);
             //place house
             if(hitColliders==null||hitColliders.Length==0)
             {
-                built=Instantiate(placedObject,hit.point + new Vector3(0.0f,hit.point.y+1f,0.0f),Quaternion.identity);
+                Build(placedObject,hit);
             }
             else
             {
@@ -52,8 +55,17 @@ public class Control : MonoBehaviour
                     Debug.Log(hitColliders[0]);
                 }
                 Debug.Log("can't place");
+                placementError.SetActive(true);
             }
             
+        }
+        if(Physics.Raycast(ray, out hit,999f)&&placingSoldier)
+        {
+
+            if(hit.transform.gameObject.GetComponent<Wall>())
+            {
+                Build(placedObject,hit);
+            }
         }
         //Debug.Log(hit);
         
@@ -79,10 +91,33 @@ public class Control : MonoBehaviour
         {
             placedObject=Resources.Load<GameObject>("House");
             Debug.Log(placedObject);
+            placingSoldier=false;
+            
         }
         else if(nowBuilding=="Soldier")
         {
             placedObject=Resources.Load<GameObject>("Archer");
+            placingSoldier=true;
+        }
+        built=placedObject;
+    }
+    void Build(GameObject toBuild, RaycastHit Hit)
+    {
+        if(toBuild.GetComponent<Income>())
+        {
+            if(ui.transform.GetChild(0).GetComponent<TrackResources>().gold>=20)
+            {
+                built=Instantiate(toBuild,Hit.point + new Vector3(0.0f,Hit.point.y+1f,0.0f),Quaternion.identity);
+                ui.transform.GetChild(0).GetComponent<TrackResources>().GainGold(-20);
+            }
+        }
+        else if(toBuild.GetComponent<Archer>())
+        {
+            if(ui.transform.GetChild(0).GetComponent<TrackResources>().gold>=10)
+            {
+                built=Instantiate(toBuild,Hit.point + new Vector3(0.0f,1f,0.0f),Quaternion.identity);
+                ui.transform.GetChild(0).GetComponent<TrackResources>().GainGold(-10);
+            }
         }
     }
 }

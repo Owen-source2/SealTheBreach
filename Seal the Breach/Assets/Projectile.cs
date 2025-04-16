@@ -16,7 +16,14 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position=Vector3.Lerp(transform.position,Vector3.MoveTowards(transform.position,target.transform.position,99999),0.2f);
+        if(target)
+        {
+            transform.position=Vector3.Lerp(transform.position,Vector3.MoveTowards(transform.position,target.transform.position,99999),0.2f);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     void OnCollisionEnter(Collision collision)
     {

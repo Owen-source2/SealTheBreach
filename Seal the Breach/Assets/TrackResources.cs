@@ -2,12 +2,12 @@ using UnityEngine;
 using TMPro;
 public class TrackResources : MonoBehaviour
 {
-    public int gold=0;
+    public int gold;
     public TMP_Text goldText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gold=0;
+        //gold=0;
     }
 
     // Update is called once per frame
@@ -15,9 +15,9 @@ public class TrackResources : MonoBehaviour
     {
         
     }
-    public void GainGold()
+    public void GainGold(int gainFactor)
     {
-        gold++;
+        gold+=gainFactor;
         goldText.SetText("Gold:"+gold);
     }
 }
