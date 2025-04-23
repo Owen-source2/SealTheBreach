@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   bloodParticles: {fileID: 922235019495560992, guid: d5f166dfae3370a48ba93b47208997b1, type: 3}
+  gate: {fileID: 0}
 --- !u!54 &4422292206060577879
 Rigidbody:
   m_ObjectHideFlags: 0

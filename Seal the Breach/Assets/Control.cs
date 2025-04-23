@@ -20,7 +20,7 @@ public class Control : MonoBehaviour
     void Start()
     {
         blockPlacement = LayerMask.GetMask("IgnoreRaycast","Default");
-        blockPlacementRay = LayerMask.GetMask("TransparentFX");
+        blockPlacementRay = LayerMask.GetMask("TransparentFX","UI");
         built=placedObject;
         cam = GetComponent<Camera>();
         control=GetComponent<CharacterController>();

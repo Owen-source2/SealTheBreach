@@ -7,6 +7,7 @@ public class Archer : MonoBehaviour
     [SerializeField]GameObject arrow;
     //[SerializeField]GameObject scoreboard;
     public GameObject nearestEnemy;
+    [SerializeField]GameObject dummy;
     float timer=0.0f;
     [SerializeField]float waitTimeInit=15.0f;
     LayerMask enemies;
@@ -25,7 +26,14 @@ public class Archer : MonoBehaviour
         RaycastHit[] hits=Physics.SphereCastAll(transform.position,range,Vector3.one,Mathf.Infinity,enemies);
         foreach(var hit in hits)
         {
-            nearestEnemy=hit.transform.gameObject;
+            if(nearestEnemy==null)
+            {
+                nearestEnemy=dummy;
+            }
+            if(Vector3.Distance(hit.transform.position,transform.position)<Vector3.Distance(nearestEnemy.transform.position,transform.position))
+            {
+                nearestEnemy=hit.transform.gameObject;
+            }
         }
         
         //Debug.Log(nearestEnemy.transform.position);

@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 587.8742, y: -16.61488, z: 327.0608}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5215, y: 1.5215, z: 1.5215}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,7 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 200
   arrow: {fileID: 2860561281341424981, guid: e6699f2e09dae5c468e267905509f23b, type: 3}
-  nearestEnemy: {fileID: 0}
+  nearestEnemy: {fileID: 3271645278670185692, guid: 0fd8adf981565424fabc7df0b0518425, type: 3}
+  dummy: {fileID: 3271645278670185692, guid: 0fd8adf981565424fabc7df0b0518425, type: 3}
   waitTimeInit: 1
 --- !u!195 &2717271977440260381
 NavMeshAgent:

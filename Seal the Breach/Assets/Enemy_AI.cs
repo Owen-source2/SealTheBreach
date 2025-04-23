@@ -6,11 +6,14 @@ public class Enemy_AI : MonoBehaviour
     NavMeshAgent agent;
     public Transform target;
     public GameObject bloodParticles;
+
+    GameObject gate;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent=GetComponent<NavMeshAgent>();
-        target=GameObject.Find("King").transform;
+        target=GameObject.Find("Castlev2/Portcullis").transform;
+        gate=GameObject.Find("Castlev2/Portcullis");
     }
 
     // Update is called once per frame
@@ -20,7 +23,10 @@ public class Enemy_AI : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position,transform.forward,out hit, 10.0f))
         {
-            agent.SetDestination(hit.point);
+            if(hit.transform.gameObject.GetComponent<Gate>())
+            {
+                gate.GetComponent<Gate>().TakeDamage();
+            }
         }
         else
         {
@@ -34,7 +40,7 @@ public class Enemy_AI : MonoBehaviour
         {
             Instantiate(bloodParticles,transform);
             Debug.Log("died");
-            Destroy(gameObject,0.5f);
+            Destroy(gameObject);
         }
     }
 }
