@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class Healthbar : MonoBehaviour
 {
     [SerializeField] int health = 50000;
@@ -15,6 +17,10 @@ public class Healthbar : MonoBehaviour
     void Update()
     {
         healthText.SetText("Gate Health: "+ health);
+        if(health<=0)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
     public void LoseHealth()
     {

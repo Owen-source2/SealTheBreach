@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject,1);
+            Destroy(gameObject,1.0f);
         }
     }
     void OnCollisionEnter(Collision collision)

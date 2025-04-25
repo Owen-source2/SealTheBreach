@@ -41,11 +41,13 @@ public class Control : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit,999f,blockPlacementRay)&&!placingSoldier)
         {
+            Debug.Log(hit);
             //check if house would touch anything 
             Collider[] hitColliders = Physics.OverlapBox(hit.point, built.GetComponent<BoxCollider>().size, built.transform.rotation,blockPlacement);
             //place house
             if(hitColliders==null||hitColliders.Length==0)
             {
+                
                 Build(placedObject,hit);
             }
             else
@@ -107,7 +109,7 @@ public class Control : MonoBehaviour
         {
             if(ui.transform.GetChild(0).GetComponent<TrackResources>().gold>=20)
             {
-                built=Instantiate(toBuild,Hit.point + new Vector3(0.0f,Hit.point.y+1f,0.0f),Quaternion.identity);
+                built=Instantiate(toBuild,Hit.point + new Vector3(0.0f,1f,0.0f),Quaternion.identity);
                 ui.transform.GetChild(0).GetComponent<TrackResources>().GainGold(-20);
             }
         }
@@ -120,4 +122,11 @@ public class Control : MonoBehaviour
             }
         }
     }
+    /*void BuildingHighlight(GameObject selected)
+    {
+        if(selected.GetComponent<Income>())
+        {
+            break;
+        }
+    }*/
 }
